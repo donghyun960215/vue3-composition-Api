@@ -2,7 +2,7 @@
 
 ## 반응형 데이터(반응성)
 
-### 반응성 없음(기본)
+### 반응성 없음
 ```html
 <template>
   <div @click="increase">
@@ -29,7 +29,7 @@ export default {
 ```plaintext
 위 와 같이 작성을 하면 작성단계는 문제는 없지만 반응성이 없다.
 ```
-### 반응성 있음(컴포지션API사용)
+### 반응성 있음
 ```html
 <template>
   <div @click="increase">
@@ -267,7 +267,8 @@ export default {
       increase,
       message,
       reversedMessage,
-      changeMessage
+      changeMessage,
+      watch
     }
   }
 }

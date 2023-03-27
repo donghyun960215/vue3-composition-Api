@@ -45,7 +45,8 @@ export default {
       increase,
       message,
       reversedMessage,
-      changeMessage
+      changeMessage,
+      watch
     }
   }
 }
