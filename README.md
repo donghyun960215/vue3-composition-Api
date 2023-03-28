@@ -278,3 +278,87 @@ export default {
 컴포지션 API를 사용한 방식이며 mounted를 사용 할 때에는 onMounted로 작성하여 가져온다.
 onCreated는 존재하지 않기때문에 setup()내부에서 어디서든지 실행을 해주면 된다. 
 ```
+
+## props, context
+```html
+<template>
+  <div
+    v-bind="$attrs"
+    class="bnt"
+    @click="hello">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+import { onMounted } from 'vue'
+
+export default {
+  inheritAttrs : false,
+  props: {
+    color: {
+      type: String,
+      default: 'gray'
+    }
+  },
+  emits: ['hello'],
+  mounted() {
+    console.log(this.color)
+    console.log(this.$attrs)
+  },
+  methods: {
+    hello() {
+      this.$emit('hello')
+    }
+  }
+}
+</script>
+```
+```plaintext
+기본의 props와 attrs 사용 방법이다.
+```
+
+```html
+<template>
+  <div
+    v-bind="$attrs"
+    class="bnt"
+    @click="hello">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+import { onMounted } from 'vue'
+
+export default {
+  inheritAttrs : false,
+  props: {
+    color: {
+      type: String,
+      default: 'gray'
+    }
+  },
+  emits: ['hello'],
+  mounted() {
+    console.log(this.color)
+    console.log(this.$attrs)
+  },
+  setup(props, context) {
+  function hello() {
+    context.emit('hello')
+  }
+  onMounted(() => {
+    console.log(props.color)
+    console.log(context.attrs)
+  })
+  return{
+    hello
+  }
+}
+}
+</script>
+```
+```plaintext
+컴포지션 API를 활용한 props 와 attrs 사용방법이다.
+```
